@@ -9,10 +9,22 @@ Create an XML-file with your NewsAPI key and add it to res/values:
          <string name="key">"YOUR_KEY"</string>
       </resources>
 
+## App overview
+The app mainly consists of three activities: ```MainActivity```, ```SearchList```, and ```Article```. The user starts out in the ```MainActivity``` where they are asked to input the news domain. That input is then sent to the second activity, ```SearchList``` where most of the code is. The largest methods in ```SearchList``` and their functionality are:
+
+*```getArticles``` - Performs an HTTP-request throught the NEWSApi and returns a JSONObject containing the data we want. From this JSONObject we extract a JSONArray that specifically holds the all the articles within each element.
+
+*```jsonToListItem``` - From the JSONArray we got from the previous method, we extract the data we want from each article and make them into an article-items. (```Item.java```) With these items we then populate the ListView so that the user may scroll through the articles and interact with them.
+
+*```getArticleImage``` - The ImageUrl from the JSONObject for each article is used to perform yet another HTTP request. The returned image is then assigned to the item it belongs to, and then updates the list.
+
+When an article item is clicked, the user is taken to the ```Article``` activity, where the content from the full article is displayed.
+
 
 ## Some features not mentioned above
-* User may navigate to website if they want to read the article there instead
-* While scrolling through the list of articles, more articles load automatically when bottom is reached
+* In the ```SearchList```, the information displayed about each article is: Title, Image, Author, Date, and a short description.
+* User may navigate to the news website from the ```Article``` activity if they want to read the article there instead.
+* While scrolling through the list of articles, more articles load automatically when bottom is reached.
 * App has a nice dark theme that doesn't hurt the users eyes, wow!
 
 ## Some drawbacks/compromises
